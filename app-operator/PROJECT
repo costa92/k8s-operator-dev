@@ -21,4 +21,12 @@ resources:
     defaulting: true
     validation: true
     webhookVersion: v1
+- api:
+    crdVersion: v1
+    namespaced: true
+  domain: costalong.com
+  group: apps
+  kind: Application
+  path: github.com/costa92/app-operator/api/v2
+  version: v2
 version: "3"

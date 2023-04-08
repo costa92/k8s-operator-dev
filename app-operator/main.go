@@ -32,6 +32,7 @@ import (
 	"sigs.k8s.io/controller-runtime/pkg/log/zap"
 
 	appsv1 "github.com/costa92/app-operator/api/v1"
+	appsv2 "github.com/costa92/app-operator/api/v2"
 	"github.com/costa92/app-operator/controllers"
 	//+kubebuilder:scaffold:imports
 )
@@ -45,6 +46,7 @@ func init() {
 	utilruntime.Must(clientgoscheme.AddToScheme(scheme))
 
 	utilruntime.Must(appsv1.AddToScheme(scheme))
+	utilruntime.Must(appsv2.AddToScheme(scheme))
 	//+kubebuilder:scaffold:scheme
 }
 

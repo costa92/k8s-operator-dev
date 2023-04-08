@@ -76,6 +76,66 @@ make manifests
 
 More information can be found via the [Kubebuilder Documentation](https://book.kubebuilder.io/introduction.html)
 
+
+安装 cert-manage 
+```she
+kubectl apply -f https://github.com/cert-manager/cert-manager/releases/download/v1.11.0/cert-manager.yaml
+```
+
+
+### 注意 api 有多个版本的时候
+1. api/v1 添加 application_conversion.go 文件
+    ```go
+    package v1
+    
+    // Hub marks this type as a conversion hub.
+    func (*Application) Hub() {}
+    
+    ```
+
+2. 在api/v2 同样需要添加 application_conversion.go 文件 但是内容是不同的
+    ```go
+    package v2
+
+    import (
+    dv1 "github.com/costa92/app-operator/api/v1"
+    "sigs.k8s.io/controller-runtime/pkg/conversion"
+    )
+    
+    // ConvertTo converts this Application to the Hub version (v1).
+    func (src *Application) ConvertTo(dstRaw conversion.Hub) error {
+    dst := dstRaw.(*dv1.Application)
+    
+        dst.ObjectMeta = src.ObjectMeta
+    
+        dst.Spec.Deployment = src.Spec.Workflow
+        dst.Spec.Service = src.Spec.Service
+    
+        dst.Status.Workflow = src.Status.Workflow
+        dst.Status.Network = src.Status.Network
+    
+        return nil
+    }
+    
+    // ConvertFrom converts from the Hub version (v1) to this version.
+    func (dst *Application) ConvertFrom(srcRaw conversion.Hub) error {
+    src := srcRaw.(*dv1.Application)
+    
+        dst.ObjectMeta = src.ObjectMeta
+    
+        dst.Spec.Workflow = src.Spec.Deployment
+        dst.Spec.Service = src.Spec.Service
+    
+        dst.Status.Workflow = src.Status.Workflow
+        dst.Status.Network = src.Status.Network
+    
+        return nil
+    }
+    ```
+
+
+参考官网 [cert-manage](https://cert-manager.io/docs/installation/)
+
 ## License
 
 Copyright 2023 Costalong.
