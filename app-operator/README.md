@@ -81,6 +81,7 @@ More information can be found via the [Kubebuilder Documentation](https://book.k
 ```she
 kubectl apply -f https://github.com/cert-manager/cert-manager/releases/download/v1.11.0/cert-manager.yaml
 ```
+参考官网 [cert-manage](https://cert-manager.io/docs/installation/)
 
 
 ### 注意 api 有多个版本的时候
@@ -133,8 +134,6 @@ kubectl apply -f https://github.com/cert-manager/cert-manager/releases/download/
     }
     ```
 
-
-参考官网 [cert-manage](https://cert-manager.io/docs/installation/)
 
 ## License
 
