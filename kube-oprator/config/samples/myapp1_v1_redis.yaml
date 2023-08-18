@@ -1,0 +1,12 @@
+apiVersion: myapp1.costalong.com/v1
+kind: Redis
+metadata:
+  labels:
+    app.kubernetes.io/name: redis
+    app.kubernetes.io/instance: redis-sample
+    app.kubernetes.io/part-of: kube-oprator
+    app.kubernetes.io/managed-by: kustomize
+    app.kubernetes.io/created-by: kube-oprator
+  name: redis-sample
+spec:
+  # TODO(user): Add fields here

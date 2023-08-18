@@ -1,0 +1,6 @@
+apiVersion: myapp1.costalong.com/v1
+kind: Redis
+metadata:
+  name: myapp
+spec:
+  port: 1011
