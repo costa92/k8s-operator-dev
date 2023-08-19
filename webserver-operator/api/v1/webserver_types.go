@@ -33,6 +33,10 @@ type WebServerSpec struct {
 	// Image is the Docker image to run for the webserver
 	Image string `json:"image,omitempty"`
 
+	Port int32 `json:"port,omitempty"`
+
+	NodePort int32 `json:"nodePort,omitempty"`
+
 	// Foo is an example field of WebServer. Edit webserver_types.go to remove/update
 	Foo string `json:"foo,omitempty"`
 }

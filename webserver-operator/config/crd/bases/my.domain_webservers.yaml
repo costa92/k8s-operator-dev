@@ -42,6 +42,12 @@ spec:
               image:
                 description: Image is the Docker image to run for the webserver
                 type: string
+              nodePort:
+                format: int32
+                type: integer
+              port:
+                format: int32
+                type: integer
               replicas:
                 description: Replicas is the number of replicas of the webserver
                 type: integer

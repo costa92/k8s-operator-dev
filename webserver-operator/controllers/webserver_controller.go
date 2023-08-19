@@ -202,8 +202,8 @@ func (r *WebServerReconciler) serviceForWebserver(ws *mydomainv1.WebServer) *cor
 			Ports: []corev1.ServicePort{
 				{
 					Protocol: corev1.ProtocolTCP,
-					NodePort: 30010,
-					Port:     80,
+					NodePort: ws.Spec.NodePort,
+					Port:     ws.Spec.Port,
 				},
 			},
 			Selector: map[string]string{

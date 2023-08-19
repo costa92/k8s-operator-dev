@@ -11,6 +11,8 @@ metadata:
 spec:
   # TODO(user): Add fields here
   #image: nginx:1.23.0
-  image: nginx:1.23.1
+  image: costa92/treafik-api:v0.0.4
   replicas: 3
+  port: 8080
+  nodePort: 30010 
   #replicas: 4
