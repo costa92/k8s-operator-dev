@@ -1,0 +1,78 @@
+---
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  annotations:
+    controller-gen.kubebuilder.io/version: v0.11.1
+  creationTimestamp: null
+  name: workspaces.apps.costalong.com
+spec:
+  group: apps.costalong.com
+  names:
+    kind: WorkSpace
+    listKind: WorkSpaceList
+    plural: workspaces
+    singular: workspace
+  scope: Namespaced
+  versions:
+  - additionalPrinterColumns:
+    - jsonPath: .status.phase
+      name: Status
+      type: string
+    name: v1
+    schema:
+      openAPIV3Schema:
+        description: WorkSpace is the Schema for the workspaces API
+        properties:
+          apiVersion:
+            description: 'APIVersion defines the versioned schema of this representation
+              of an object. Servers should convert recognized schemas to the latest
+              internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources'
+            type: string
+          kind:
+            description: 'Kind is a string value representing the REST resource this
+              object represents. Servers may infer this from the endpoint the client
+              submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds'
+            type: string
+          metadata:
+            type: object
+          spec:
+            description: WorkSpaceSpec defines the desired state of WorkSpace
+            properties:
+              cpu:
+                description: 表示该工作空间使用的cpu、内存和存储的规格
+                type: string
+              hardware:
+                description: 是一个用于描述硬件资源的字段，用于在使用kubectl查询时显示信息
+                type: string
+              image:
+                description: pod使用的镜像
+                type: string
+              memory:
+                type: string
+              mountPath:
+                description: 存储卷的挂载位置
+                type: string
+              operation:
+                description: 要进行的操作，用于启动或者停止工作空间
+                type: string
+              port:
+                description: pod中code-server监听的端口
+                format: int32
+                type: integer
+              storage:
+                type: string
+            required:
+            - mountPath
+            type: object
+          status:
+            description: WorkSpaceStatus defines the observed state of WorkSpace
+            properties:
+              phase:
+                type: string
+            type: object
+        type: object
+    served: true
+    storage: true
+    subresources:
+      status: {}
