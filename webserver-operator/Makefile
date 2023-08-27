@@ -10,6 +10,8 @@ GOBIN=$(shell go env GOPATH)/bin
 else
 GOBIN=$(shell go env GOBIN)
 endif
+# add git tags version
+TAG := $(shell git describe --always --tags --abbrev=0 --match 'v*' --exclude '*/*' | tr -d "[\r\n]")
 
 # Setting SHELL to bash allows bash commands to be executed by recipes.
 # Options are set to exit when a recipe line exits non-zero or a piped command fails.
