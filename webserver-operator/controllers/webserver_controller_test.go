@@ -3,6 +3,7 @@ package controllers
 import (
 	"context"
 	mydomainv1 "github.com/costa92/webserver-operator/api/v1"
+	"github.com/stretchr/testify/assert"
 	appsv1 "k8s.io/api/apps/v1"
 	corev1 "k8s.io/api/core/v1"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
@@ -52,10 +53,7 @@ func TestReconcile(t *testing.T) {
 	}
 
 	_, err := r.Reconcile(context.Background(), req)
-	if err != nil {
-		t.Fatalf("reconcile: (%v)", err)
-	}
-
+	assert.NoError(t, err)
 	// Check if deployment has been created and has the correct name
 	dep := &appsv1.Deployment{}
 	err = client.Get(context.Background(), req.NamespacedName, dep)
