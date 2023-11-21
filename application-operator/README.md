@@ -116,3 +116,4 @@ limitations under the License.
 |KUBEBUILDER_CONTROLPLANE_START_TIMEOUT and KUBEBUILDER_CONTROLPLANE_STOP_TIMEOUT | durations in format supported by time.ParseDuration | Set the timeout for starting and stopping the control plane. |  |
 |KUBEBUILDER_ATTACH_CONTROL_PLANE_OUTPUT | boolean | If set to true, the output of the control plane will be attached to the test output. |  |
 
+参考文档： https://book.kubebuilder.io/reference/envtest.html#environment-variables

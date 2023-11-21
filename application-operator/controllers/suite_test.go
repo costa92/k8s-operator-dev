@@ -56,6 +56,9 @@ var _ = BeforeSuite(func() {
 	Expect(os.Setenv("TEST_ASSET_ETCD", "../bin/k8s/1.23.1-linux-amd64/etcd")).To(Succeed())
 	Expect(os.Setenv("TEST_ASSET_KUBECTL", "../bin/k8s/1.23.1-linux-amd64/kubectl")).To(Succeed())
 
+	// or
+	//Expect(os.Setenv("KUBEBUILDER_ASSETS", "../bin/k8s/1.23.1-linux-amd64")).To(Succeed())
+
 	logf.SetLogger(zap.New(zap.WriteTo(GinkgoWriter), zap.UseDevMode(true)))
 
 	By("bootstrapping test environment")
@@ -84,6 +87,10 @@ var _ = AfterSuite(func() {
 	By("tearing down the test environment")
 	err := testEnv.Stop()
 	Expect(err).NotTo(HaveOccurred())
+
+	Expect(os.Unsetenv("TEST_ASSET_KUBE_APISERVER")).To(Succeed())
+	Expect(os.Unsetenv("TEST_ASSET_ETCD")).To(Succeed())
+	Expect(os.Unsetenv("TEST_ASSET_KUBECTL")).To(Succeed())
 })
 
 var _ = Describe("Application controller", func() {
