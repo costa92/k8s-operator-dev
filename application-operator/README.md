@@ -97,3 +97,22 @@ limitations under the License.
 1. 运行 make envtest 
 生成运行的二进制文件
 ![binary-file.png](docs%2Fimags%2Fbinary-file.png)
+2. 修改 controllers/suite_test.go 中的 BeforeSuite 函数
+![update-BeforSuite.png](docs%2Fimags%2Fupdate-BeforSuite.png)
+
+```go
+    // By default, tests run serially in the same process. To run multiple
+	Expect(os.Setenv("TEST_ASSET_KUBE_APISERVER", "../bin/k8s/1.23.1-linux-amd64/kube-apiserver")).To(Succeed())
+	Expect(os.Setenv("TEST_ASSET_ETCD", "../bin/k8s/1.23.1-linux-amd64/etcd")).To(Succeed())
+	Expect(os.Setenv("TEST_ASSET_KUBECTL", "../bin/k8s/1.23.1-linux-amd64/kubectl")).To(Succeed())
+```
+对应的相关的环境变量
+
+|   Variable name  |  	Type   |  	When to use   |     |
+|-----|-----|-----|-----|
+|   USE_EXISTING_CLUSTER  |  boolean   |   Instead of setting up a local control plane, point to the control plane of an existing cluster.  |     |
+|   KUBEBUILDER_ASSETS  |  	path to directory   |   Point integration tests to a directory containing all binaries (api-server, etcd and kubectl).  |     |
+|   TEST_ASSET_KUBE_APISERVER, TEST_ASSET_ETCD, TEST_ASSET_KUBECTL  |  	paths to, respectively, api-server, etcd and kubectl binaries   |   Similar to KUBEBUILDER_ASSETS, but more granular. Point integration tests to use binaries other than the default ones. <br/>These environment variables can also be used to ensure specific tests run with expected versions of these binaries.  |     |
+|KUBEBUILDER_CONTROLPLANE_START_TIMEOUT and KUBEBUILDER_CONTROLPLANE_STOP_TIMEOUT | durations in format supported by time.ParseDuration | Set the timeout for starting and stopping the control plane. |  |
+|KUBEBUILDER_ATTACH_CONTROL_PLANE_OUTPUT | boolean | If set to true, the output of the control plane will be attached to the test output. |  |
+
