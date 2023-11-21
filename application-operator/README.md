@@ -92,3 +92,8 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 
+
+## 测试
+1. 运行 make envtest 
+生成运行的二进制文件
+![binary-file.png](docs%2Fimags%2Fbinary-file.png)
