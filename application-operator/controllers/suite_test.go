@@ -92,11 +92,3 @@ var _ = AfterSuite(func() {
 	Expect(os.Unsetenv("TEST_ASSET_ETCD")).To(Succeed())
 	Expect(os.Unsetenv("TEST_ASSET_KUBECTL")).To(Succeed())
 })
-
-var _ = Describe("Application controller", func() {
-	Context("When creating a new Application", func() {
-		It("Should create a new Pod", func() {
-			Expect(true).To(Equal(true))
-		})
-	})
-})
