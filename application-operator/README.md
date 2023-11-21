@@ -117,3 +117,4 @@ limitations under the License.
 |KUBEBUILDER_ATTACH_CONTROL_PLANE_OUTPUT | boolean | If set to true, the output of the control plane will be attached to the test output. |  |
 
 参考文档： https://book.kubebuilder.io/reference/envtest.html#environment-variables
+案例：https://github.com/kubernetes-sigs/kubebuilder/blob/v3.7.0/testdata/project-v3-with-deploy-image/controllers/busybox_controller_test.go
